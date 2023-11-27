@@ -64,6 +64,7 @@ class gras {
 
 };
 
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 class grasFresser {
     zeile;
     spalte;
@@ -83,25 +84,19 @@ class grasFresser {
 
 
     step() {
-        //console.log("EnergieLevel im Moment: " + this.energieLevel)
         if (this.energieLevel <= 0) {
             this.sterbeAus(this.zeile, this.spalte)
-            //console.log("!!!")
             return 
         }
-
-       // console.log("***")
         let grasFelder = this.erstelleGrasfelderTabelle()
 
         if (grasFelder.length > 0) {
 
             if (this.energieLevel > this.energieLevelZurFortpflanzung) {
-
                 let gewähltesFeldZurFortpflanzung = grasFelder[randomNumber(0, grasFelder.length)];
                 //console.log("vermehreDich!")
                 this.loeschGrasObjekt(gewähltesFeldZurFortpflanzung[0], gewähltesFeldZurFortpflanzung[1])
                 this.vermehreDich(gewähltesFeldZurFortpflanzung[0], gewähltesFeldZurFortpflanzung[1])
-
                 return 
             }
 
@@ -109,12 +104,8 @@ class grasFresser {
 
         //RasenDestroyer Fressen
         let potenzielleNahrung = this.erstelleGrasfelderTabelle()
-        //console.log(potenzielleNahrung)
-        //console.log(randomNumber(0,10))
-        //console.log("***potenzielleNahrung= " + potenzielleNahrung.length)
         if (potenzielleNahrung.length > 0) {
             let gewaehlteNahrung = potenzielleNahrung[randomNumber(0, potenzielleNahrung.length)];
-            //console.log("*gewaehlteNahrung= " + gewaehlteNahrung)
             this.loeschGrasObjekt(gewaehlteNahrung[0], gewaehlteNahrung[1])
             matrix[this.zeile][this.spalte] = 0
             this.zeile = gewaehlteNahrung[0]
@@ -145,16 +136,6 @@ class grasFresser {
     };
 
 
-    erstelleFleischFresserfelderTabelle() {
-        let benachbarteFelder = [
-            [this.zeile + 1, this.spalte],
-            [this.zeile - 1, this.spalte],
-            [this.zeile, this.spalte + 1],
-            [this.zeile, this.spalte - 1],
-        ]
-        return benachbarteFelder.filter(this.istFleischFresser);
-    };
-
     erstelleGrasfelderTabelle() {
         let benachbarteFelder = [
             [this.zeile + 1, this.spalte],
@@ -163,16 +144,6 @@ class grasFresser {
             [this.zeile, this.spalte - 1],
         ]
         return benachbarteFelder.filter(this.istGras);
-    };
-
-    erstelleWüsteFelderTabelle() {
-        let benachbarteWüstenFelder = [
-            [this.zeile + 1, this.spalte],
-            [this.zeile - 1, this.spalte],
-            [this.zeile, this.spalte + 1],
-            [this.zeile, this.spalte - 1],
-        ]
-        return benachbarteWüstenFelder.filter(this.istWüste);
     };
 
     istFleischFresser(koordinatenPaar) {
@@ -213,25 +184,6 @@ class grasFresser {
 
     };
 
-    istWüste(koordinatenPaar) {
-
-        let zeile = koordinatenPaar[0];
-        let spalte = koordinatenPaar[1];
-        if (zeile >= 0
-            && spalte >= 0
-            && zeile < matrix.length
-            && spalte < matrix.length
-            && matrix[zeile][spalte] === 0
-        ) {
-            return true;
-
-        } else {
-            return false;
-        }
-
-
-    };
-
     sterbeAus(zeile, spalte) {
         let index = grasFresserListe.findIndex(function (grasFresserObjekt) {
             if (grasFresserObjekt.zeile === zeile && grasFresserObjekt.spalte === spalte) {
@@ -246,6 +198,7 @@ class grasFresser {
 
 
 };
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 class fleischFresser {
     energiePunkte = 1000;

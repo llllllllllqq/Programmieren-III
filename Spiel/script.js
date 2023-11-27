@@ -67,7 +67,7 @@ for (let i = 0; i < AnzahlFleischfresser; i++) {
 function setup() {
     createCanvas(1000, 1000);
     background("lightgrey");
-    frameRate(10);
+    frameRate(90);
 
     for (let i = 0; i < grasListe.length; i++) {
         grasListe[i].platziereSelbstInMatrix();

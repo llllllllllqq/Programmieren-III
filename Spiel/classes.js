@@ -262,7 +262,7 @@ class fleischFresser {
 
     };
 
-    istRasenDestroyer(koordinatenPaar) {
+    istZielfeld(koordinatenPaar, feld) {
 
         let zeile = koordinatenPaar[0];
         let spalte = koordinatenPaar[1];
@@ -272,14 +272,11 @@ class fleischFresser {
             && spalte >= 0
             && zeile < matrix.length
             && spalte < matrix.length
-            && matrix[zeile][spalte] === 2
+            && matrix[zeile][spalte] === feld
         ) {
             ret = true;
         }
-
-
         return ret;
-      
     };
 
     sterbeAus(zeile, spalte) {

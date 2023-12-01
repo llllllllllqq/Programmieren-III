@@ -4,4 +4,4 @@ class Lebewesen(){
         this.spalte = n
     }
 }
-}
+//test
